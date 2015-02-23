@@ -1,0 +1,43 @@
+{
+    "name": "elao/theme-elaostrap-bundle",
+    "type": "symfony-bundle",
+    "description": "ElaoStrap theme bundle for ElaoThemeBundle",
+    "keywords": ["elao", "theme-bundle", "elaostrap"],
+    "homepage": "https://github.com/Elao/ElaoThemeElaoStrapBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elao",
+            "homepage": "http://www.elao.com"
+        },
+        {
+            "name": "Thomas Jarrand",
+            "homepage": "https://github.com/Tom32i"
+        },
+        {
+            "name": "Jérémy Fagis",
+            "homepage": "https://github.com/JeremyFagis"
+        },
+        {
+            "name": "Jérémy James",
+            "homepage": "https://github.com/JeremyJames"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.4"
+    },
+    "suggest": {
+        "elao/form-bundle":  "~0.1@dev",
+        "elao/theme-bundle": "~0.1@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elao\\Bundle\\Theme\\ElaoStrapBundle\\": "."
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

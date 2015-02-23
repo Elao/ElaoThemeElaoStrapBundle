@@ -1,0 +1,208 @@
+{% extends "@ElaoForm/Form/form_elao_layout.html.twig" %}
+
+{# Form root block #}
+
+{% block form_start %}
+{% spaceless %}
+    {% set form_class = form_class|default('form') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_start %}
+
+{# Form row #}
+
+{% block row_container_attributes %}
+{% spaceless %}
+    {% set group_attr = group_attr|default({}) %}
+    {% set group_class = group_class|default('form-group') %}
+    {% set group_error_class = group_error_class|default('has-error') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock row_container_attributes %}
+
+{# Form label #}
+
+{% block form_label %}
+{% spaceless %}
+    {% set label_class = label_class|default('control-label') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_label %}
+
+{# Widget classes #}
+
+{% block form_widget %}
+{% spaceless %}
+    {% if not compound or expanded|default(true) is sameas(false) %}
+        {% set control_class = control_class|default('form-control') %}
+    {% endif %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_widget %}
+
+{% block textarea_widget %}
+{% spaceless %}
+    {% set control_class = control_class|default('form-control') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set control_class = control_class|default('form-control') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{% block choice_widget_collapsed %}
+{% spaceless %}
+    {% set control_class = control_class|default('form-control') %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock choice_widget_collapsed %}
+
+{% block button_widget %}
+    {% set type = type|default('button') %}
+    {% set btn_class = btn_class|default(type == 'submit' ? 'btn-primary' : type == 'reset' ? 'btn-danger' : 'btn-default') %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' btn ' ~ btn_class }) %}
+    {{ parent() }}
+{% endblock button_widget %}
+
+{# Help blocks #}
+
+{% block form_help %}
+    {% set help_class = help_class|default('help-block') %}
+    {{ parent() }}
+{% endblock %}
+
+{# Checkbox and radio #}
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+    {% set tag = tag|default('fieldset') %}
+    <{{ tag }} {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_row(child, {inline: inline|default(false), simple: true}) }}
+    {% endfor %}
+    </{{ tag }}>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_row %}
+    {% set box_class = box_class|default('checkbox') %}
+    {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ box_class)|trim }) %}
+
+    {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
+{% endblock checkbox_row %}
+
+{% block radio_row %}
+    {% set box_class = box_class|default('radio') %}
+    {% set group_attr = group_attr|default({})|merge({'class': (group_attr.class|default('') ~ ' ' ~ box_class)|trim }) %}
+
+    {{ block(inline|default(false) or simple|default(false) ? 'box_widget' : 'box_row') }}
+{% endblock radio_row %}
+
+{% block box_widget %}
+    {% if inline|default(false) %}
+        {% set label_attr = label_attr|default({})|merge({class: (label_attr.class|default('') ~ ' ' ~ box_class ~ '-inline')|trim}) %}
+        {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr}) }}
+    {% else %}
+        <div class="{{ box_class }}">
+        {% if label is sameas(false) %}
+            {{ form_widget(form) }}
+        {% else %}
+            {{ form_label(form, form_widget(form) ~ label|trans({}, translation_domain), {label_attr: label_attr|default({})}) }}
+        {% endif %}
+        </div>
+    {% endif %}
+{% endblock box_widget %}
+
+{# Collection #}
+
+{% block collection_add_button %}
+{% spaceless %}
+    {% set button_class = button_class|default("btn btn-success") %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock collection_add_button %}
+
+{% block collection_delete_button %}
+{% spaceless %}
+    {% set button_class = button_class|default("btn btn-danger") %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock collection_delete_button %}
+
+{# Date & Time #}
+
+{% block datetime_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ parent() }}
+    {% else %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ _self.wrapColumn(form_widget(form.date) ~ form_errors(form.date), 7) }}
+            {{ _self.wrapColumn(form_widget(form.time) ~ form_errors(form.time), 5) }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock datetime_widget %}
+
+{% block date_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ parent() }}
+    {% else %}
+        {% set width = grid_size|default(12) / 3 %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ date_pattern|replace({
+                '{{ year }}':  _self.wrapColumn(form_widget(form.year), width),
+                '{{ month }}': _self.wrapColumn(form_widget(form.month), width),
+                '{{ day }}':  _self.wrapColumn(form_widget(form.day), width),
+            })|raw }}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock date_widget %}
+
+{% block time_widget %}
+{% spaceless %}
+    {% if widget == 'single_text' %}
+        {{ block('form_widget_simple') }}
+    {% else %}
+        {% set attr = attr|default({})|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+        <div {{ block('widget_container_attributes') }}>
+            {% if with_minutes or with_seconds %}
+                {% set width = grid_size|default(12) / (with_minutes and with_seconds ? 3 : 2) %}
+                {{ _self.wrapColumn(form_widget(form.hour), width) }}
+                {% if with_minutes %}{{ _self.wrapColumn(form_widget(form.minute), width) }}{% endif %}
+                {% if with_seconds %}{{ _self.wrapColumn(form_widget(form.second), width) }}{% endif %}
+            {% else %}
+                {{ form_widget(form.hour) }}{% if with_minutes %}:{{ form_widget(form.minute) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second) }}{% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock time_widget %}
+
+{# Errors #}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    <ul class="no-bullet has-error">
+        {%- for error in errors -%}
+            <li class="text-danger">{{ error.message|raw }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif %}
+{%- endblock form_errors %}
+
+{# Macros #}
+
+{% macro wrapColumn(content, width) %}
+<div class="col-sm-{{ width }}">
+    {{ content|raw }}
+</div>
+{% endmacro %}

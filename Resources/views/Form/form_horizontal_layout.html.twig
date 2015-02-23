@@ -1,0 +1,36 @@
+{% extends "@ElaoThemeTwitterBootstrap3/Form/form_default_layout.html.twig" %}
+
+{# Form root block #}
+
+{% block form_start %}
+{% spaceless %}
+    {% set form_class = 'form-horizontal' %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_start %}
+
+{# Form row #}
+
+{% block form_row %}
+{% spaceless %}
+    {% set label_columns = label_columns|default(3) %}
+    {% set widget_columns = widget_columns|default(grid_size|default(12) - label_columns) %}
+
+    {% set control_group = true %}
+    {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('control-field col-sm-' ~ widget_columns))|trim}) %}
+
+    {% set label_attr = label_attr|default({})|merge({'class': (label_attr.class|default('') ~ ' ' ~ label_attr_class|default('col-sm-' ~ label_columns))|trim}) %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block box_row %}
+{% spaceless %}
+    {% set label_columns = label_columns|default(3) %}
+    {% set widget_columns = widget_columns|default(grid_size|default(12) - label_columns) %}
+
+    {% set control_group = true %}
+    {% set control_group_attr = control_group_attr|default({})|merge({'class': (control_group_attr.class|default('') ~ ' ' ~ control_group_class|default('col-sm-' ~ widget_columns ~ ' col-sm-offset-' ~ label_columns))|trim}) %}
+    {{ parent() }}
+{% endspaceless %}
+{% endblock box_row %}
