@@ -8,7 +8,7 @@
  * @author Elao <contact@elao.com>
  */
 
-namespace Elao\Bundle\Theme\ElaoStrapThemeBundle\Behaviour;
+namespace Elao\Bundle\Theme\ElaoStrapBundle\Behaviour;
 
 /**
  * HTML Attributes Bag Interface

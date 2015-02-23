@@ -8,7 +8,7 @@
  * @author Elao <contact@elao.com>
  */
 
-namespace Elao\Bundle\Theme\ElaoStrapThemeBundle\Twig\Extension;
+namespace Elao\Bundle\Theme\ElaoStrapBundle\Twig\Extension;
 
 use Elao\Bundle\Theme\ElaoStrapThemeBundle\Behaviour\AttributeBagInterface;
 use Elao\Bundle\Theme\ElaoStrapThemeBundle\Util\TooltipBag;

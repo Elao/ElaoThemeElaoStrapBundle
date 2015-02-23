@@ -8,7 +8,7 @@
  * @author Elao <contact@elao.com>
  */
 
-namespace Elao\Bundle\Theme\ElaoStrapThemeBundle\Util;
+namespace Elao\Bundle\Theme\ElaoStrapBundle\Util;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Elao\Bundle\Theme\ElaoStrapThemeBundle\Util\AttributeBag;

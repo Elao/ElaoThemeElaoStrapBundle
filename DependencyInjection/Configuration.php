@@ -8,7 +8,7 @@
  * @author Elao <contact@elao.com>
  */
 
-namespace Elao\Bundle\Theme\ElaoStrapThemeBundle\DependencyInjection;
+namespace Elao\Bundle\Theme\ElaoStrapBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

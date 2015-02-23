@@ -8,7 +8,7 @@
  * @author Elao <contact@elao.com>
  */
 
-namespace Elao\Bundle\Theme\ElaoStrapThemeBundle;
+namespace Elao\Bundle\Theme\ElaoStrapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
