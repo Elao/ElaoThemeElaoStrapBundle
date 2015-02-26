@@ -187,6 +187,14 @@
 {% endspaceless %}
 {% endblock time_widget %}
 
+{% block date_picker_widget %}
+<div class="input-group date">
+    {% set type = 'text' %}
+    {{ block('form_widget_simple') }}
+    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+</div>
+{% endblock date_picker_widget %}
+
 {# Errors #}
 
 {% block form_errors -%}

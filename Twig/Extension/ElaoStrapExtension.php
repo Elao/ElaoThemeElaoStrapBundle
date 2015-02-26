@@ -16,7 +16,7 @@ use Elao\Bundle\Theme\ElaoStrapThemeBundle\Util\PopoverBag;
 use Elao\Bundle\Theme\ElaoStrapThemeBundle\Util\CollapseBag;
 
 /**
- * Elao Theme Twitter Bootstrap3 Twig Extension
+ * Elao Theme ElaoStrap Twig Extension
  */
 class ElaoStrapExtension extends \Twig_Extension
 {

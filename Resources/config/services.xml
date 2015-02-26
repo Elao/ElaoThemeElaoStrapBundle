@@ -5,13 +5,17 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="elao.twig.theme_elaostrap_extension.class">Elao\Bundle\Theme\ElaoStrapThemeBundle\Twig\Extension\ElaoStrapExtension</parameter>
+        <parameter key="elao.twig.theme_elaostrap_extension.class">Elao\Bundle\Theme\ElaoStrapBundle\Twig\Extension\ElaoStrapExtension</parameter>
+        <parameter key="elao.form.type.date_picker.class">Elao\Bundle\Theme\ElaoStrapBundle\Form\Type\DatePickerType</parameter>
     </parameters>
 
     <services>
         <service id="elao.twig.theme_elaostrap_extension" class="%elao.twig.theme_elaostrap_extension.class%">
             <argument type="service" id="twig" />
             <tag name="twig.extension" />
+        </service>
+        <service id="elao.form.type.date_picker" class="%elao.form.type.date_picker.class%">
+            <tag name="form.type" alias="date_picker" />
         </service>
     </services>
 </container>
