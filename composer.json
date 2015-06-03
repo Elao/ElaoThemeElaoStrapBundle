@@ -11,6 +11,10 @@
             "homepage": "http://www.elao.com"
         },
         {
+            "name": "Maxime Colin",
+            "homepage": "https://github.com/maximecolin"
+        },
+        {
             "name": "Thomas Jarrand",
             "homepage": "https://github.com/Tom32i"
         },
@@ -24,7 +28,8 @@
         }
     ],
     "require": {
-        "php": ">=5.3.4"
+        "php": ">=5.3.4",
+        "symfony/form": "~2.7"
     },
     "suggest": {
         "elao/form-bundle":  "~0.1@dev",
