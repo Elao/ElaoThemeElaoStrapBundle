@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="elao.twig.theme_elaostrap_extension.class">Elao\Bundle\Theme\ElaoStrapBundle\Twig\Extension\ElaoStrapExtension</parameter>
         <parameter key="elao.form.type.date_picker.class">Elao\Bundle\Theme\ElaoStrapBundle\Form\Type\DatePickerType</parameter>
+        <parameter key="elao.form.type.datetime_picker.class">Elao\Bundle\Theme\ElaoStrapBundle\Form\Type\DateTimePickerType</parameter>
     </parameters>
 
     <services>
@@ -16,6 +17,9 @@
         </service>
         <service id="elao.form.type.date_picker" class="%elao.form.type.date_picker.class%">
             <tag name="form.type" alias="date_picker" />
+        </service>
+        <service id="elao.form.type.datetime_picker" class="%elao.form.type.datetime_picker.class%">
+            <tag name="form.type" alias="datetime_picker" />
         </service>
     </services>
 </container>
