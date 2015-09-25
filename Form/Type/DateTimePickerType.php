@@ -1,13 +1,16 @@
 <?php
+
 /**
- * This file is part of the MOBILIWORK website.
+ * This file is part of the Elao ElaoStrap Theme Bundle.
  *
- * Copyright (C) 2015 MOBILIWORK
+ * Copyright (C) 2015 Elao
  *
  * @author Elao <contact@elao.com>
  */
+
 namespace Elao\Bundle\Theme\ElaoStrapBundle\Form\Type;
 
+use Elao\Bundle\Theme\ElaoStrapBundle\Form\Transformer\DateTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
@@ -19,6 +22,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DateTimePickerType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addViewTransformer(new DateTransformer());
+    }
+
     /**
      * {@inheritdoc}
      */
